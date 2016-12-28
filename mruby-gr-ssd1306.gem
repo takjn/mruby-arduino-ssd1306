@@ -1,0 +1,6 @@
+name: mruby-gr-ssd1306
+description: Ssd1306 class
+author: Jun Takeda
+website: https://github.com/takjn/mruby-gr-ssd1306
+protocol: git
+repository: https://github.com/takjn/mruby-gr-ssd1306.git
