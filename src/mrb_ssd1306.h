@@ -7,6 +7,6 @@
 #ifndef MRB_SSD1306_H
 #define MRB_SSD1306_H
 
-void mrb_mruby_ssd1306_gem_init(mrb_state *mrb);
+void mrb_mruby_gr_ssd1306_gem_init(mrb_state *mrb);
 
 #endif
