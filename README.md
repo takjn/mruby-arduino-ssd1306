@@ -1,8 +1,6 @@
 # mruby-gr-ssd1306   [![Build Status](https://travis-ci.org/takjn/mruby-gr-ssd1306.svg?branch=master)](https://travis-ci.org/takjn/mruby-gr-ssd1306)
 SSD1306(OLED) for GR-CITRUS.
 
-まだ動いていないです。。。
-
 ## install by mrbgems
 - add conf.gem line to `build_config.rb`
 
@@ -22,7 +20,10 @@ end
 
 ## example
 ```ruby
-T.B.D.
+SSD1306.begin(0x3C)
+SSD1306.clear_display
+SSD1306.draw_line(0, 0, 127, 63);
+SSD1306.display
 ```
 
 ## License

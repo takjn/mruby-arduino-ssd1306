@@ -9,16 +9,12 @@
 #include "mruby.h"
 #include "mruby/data.h"
 #include "mruby/string.h"
-#include "mrb_ssd1306.h"
 
 #include "Wire.h"
-#include "Adafruit-GFX-Library/Adafruit_GFX.h"
-#include "Adafruit-GFX-Library/Fonts/acknow7pt.h"
-#include "Adafruit-GFX-Library/Fonts/pixel_dingbats.h"
-#include "Adafruit_SSD1306/Adafruit_SSD1306.h"
-
-#define RB_PIN18	18
-#define RB_PIN19	19
+#include "Adafruit_GFX.h"
+#include "Fonts/acknow7pt.h"
+#include "Fonts/pixel_dingbats.h"
+#include "Adafruit_SSD1306.h"
 
 // OLED
 #define OLED_RESET 4
@@ -31,8 +27,8 @@ mrb_value mrb_gfx_begin(mrb_state *mrb, mrb_value self)
 	int i2c_addr;
 
 	mrb_get_args(mrb, "i", &i2c_addr);
-	pinMode(RB_PIN18, OUTPUT);
-	pinMode(RB_PIN19, OUTPUT);
+	pinMode(SDA, OUTPUT);
+	pinMode(SCL, OUTPUT);
 	display.begin(SSD1306_SWITCHCAPVCC, i2c_addr);
 	display.setTextColor(WHITE);
 	display.setFont(&acknowtt7pt7b);
@@ -153,10 +149,11 @@ mrb_value mrb_gfx_fillRect(mrb_state *mrb, mrb_value self)
 	return mrb_nil_value();
 }
 
+extern "C"
 void mrb_mruby_gr_ssd1306_gem_init(mrb_state *mrb)
 {
   struct RClass *ssd1306;
-  ssd1306 = mrb_define_class(mrb, "Ssd1306", mrb->object_class);
+  ssd1306 = mrb_define_class(mrb, "SSD1306", mrb->object_class);
 
   mrb_define_module_function(mrb, ssd1306, "begin", mrb_gfx_begin, MRB_ARGS_REQ(1));
 	mrb_define_module_function(mrb, ssd1306, "clear_display", mrb_gfx_clearDisplay, MRB_ARGS_NONE());
@@ -176,6 +173,7 @@ void mrb_mruby_gr_ssd1306_gem_init(mrb_state *mrb)
   DONE;
 }
 
+extern "C"
 void mrb_mruby_gr_ssd1306_gem_final(mrb_state *mrb)
 {
 }
