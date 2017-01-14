@@ -150,7 +150,7 @@ mrb_value mrb_gfx_fillRect(mrb_state *mrb, mrb_value self)
 }
 
 extern "C"
-void mrb_mruby_gr_ssd1306_gem_init(mrb_state *mrb)
+void mrb_mruby_arduino_ssd1306_gem_init(mrb_state *mrb)
 {
   struct RClass *ssd1306;
   ssd1306 = mrb_define_class(mrb, "SSD1306", mrb->object_class);
@@ -174,6 +174,6 @@ void mrb_mruby_gr_ssd1306_gem_init(mrb_state *mrb)
 }
 
 extern "C"
-void mrb_mruby_gr_ssd1306_gem_final(mrb_state *mrb)
+void mrb_mruby_arduino_ssd1306_gem_final(mrb_state *mrb)
 {
 }

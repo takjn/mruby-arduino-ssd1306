@@ -1,0 +1,6 @@
+name: mruby-arduino-ssd1306
+description: SSD1306 library for mruby-arduino environment
+author: Jun Takeda
+website: https://github.com/takjn/mruby-arduino-ssd1306
+protocol: git
+repository: https://github.com/takjn/mruby-arduino-ssd1306.git

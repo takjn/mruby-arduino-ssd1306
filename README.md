@@ -1,8 +1,10 @@
-# mruby-gr-ssd1306
-SSD1306(OLED) library for mruby-arduino environments.
+# mruby-arduino-ssd1306
+SSD1306 library for mruby-arduino environment.
 This library is a wrapper library for [Adafruit_SSD1306](https://github.com/adafruit/Adafruit_SSD1306) and [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library).
 
 > Adafruit invests time and resources providing this open source code, please support Adafruit and open-source hardware by purchasing products from Adafruit!
+
+Currentry, only I2C and 128×64 pixels are supported.
 
 ## install by mrbgems
 - add conf.gem line to `build_config.rb`
@@ -12,11 +14,17 @@ MRuby::Build.new do |conf|
 
     # ... (snip) ...
 
-    GR_MRUBY_FIRMWARE_PATH = '/#{PATH_TO}/wrbb-v2lib-firm/firmware_develop'
-    conf.gem :github => 'takjn/mruby-gr-ssd1306'
-      g.cxx.flags << " -x c++ -DGRSAKURA -DARDUINO=100 "
-      g.cxx.include_paths << ["#{GR_MRUBY_FIRMWARE_PATH}/gr_common/lib/SPI/", "#{GR_MRUBY_FIRMWARE_PATH}/gr_common/lib/Wire/", "#{GR_MRUBY_FIRMWARE_PATH}/gr_common", "#{GR_MRUBY_FIRMWARE_PATH}/gr_common/core" ]
-    end
+    # additional configrations for Arduino API
+    conf.cc.flags << " -DGRSAKURA -DARDUINO=100 "
+    conf.cc.include_paths << ["../gr_common/lib/", "../gr_common", "../gr_common/core", "../gr_common/lib/SPI", "../gr_common/lib/Wire", "../gr_common/lib/Servo" ]
+    conf.cxx.flags = conf.cc.flags.dup
+    conf.cxx.include_paths = conf.cc.include_paths.dup
+    
+    # Arduino API
+    conf.gem :github => "takjn/mruby-arduino", :branch => "master"
+
+    # SSD1306 library for mruby-arduino environment.
+    conf.gem :github => "takjn/mruby-arduino-ssd1306", :branch => "master"
 
 end
 ```
@@ -31,10 +39,10 @@ SSD1306.display
 
 ## License
 [Adafruit_SSD1306](https://github.com/adafruit/Adafruit_SSD1306) is under the BSD License:
-- see Adafruit_SSD1306/license.txt
+- see src/Adafruit_SSD1306/license.txt
 
 [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library) is under the BSD License:
-- see Adafruit-GFX-Library/license.txt
+- see src/Adafruit-GFX-Library/license.txt
 
 mrb_arduino_ssd1306 is under the MIT License:
 - see LICENSE file
