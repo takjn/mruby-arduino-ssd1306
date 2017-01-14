@@ -1,5 +1,8 @@
-# mruby-gr-ssd1306   [![Build Status](https://travis-ci.org/takjn/mruby-gr-ssd1306.svg?branch=master)](https://travis-ci.org/takjn/mruby-gr-ssd1306)
-SSD1306(OLED) for GR-CITRUS.
+# mruby-gr-ssd1306
+SSD1306(OLED) library for mruby-arduino environments.
+This library is a wrapper library for [Adafruit_SSD1306](https://github.com/adafruit/Adafruit_SSD1306) and [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library).
+
+> Adafruit invests time and resources providing this open source code, please support Adafruit and open-source hardware by purchasing products from Adafruit!
 
 ## install by mrbgems
 - add conf.gem line to `build_config.rb`
@@ -27,5 +30,15 @@ SSD1306.display
 ```
 
 ## License
-under the MIT License:
+[Adafruit_SSD1306](https://github.com/adafruit/Adafruit_SSD1306) is under the BSD License:
+- see Adafruit_SSD1306/license.txt
+
+[Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library) is under the BSD License:
+- see Adafruit-GFX-Library/license.txt
+
+mrb_arduino_ssd1306 is under the MIT License:
 - see LICENSE file
+
+## See also
+- [mruby-arduino for Gadget Renesas](https://github.com/takjn/mruby-arduino)
+- [mirb for Gadget Renesas](https://github.com/takjn/mirb4gr)
