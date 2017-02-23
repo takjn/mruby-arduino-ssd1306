@@ -161,6 +161,22 @@ mrb_value mrb_gfx_fillRect(mrb_state *mrb, mrb_value self)
 	return mrb_nil_value();
 }
 
+mrb_value mrb_gfx_height(mrb_state *mrb, mrb_value self){
+  return mrb_fixnum_value(display.height());
+}
+
+mrb_value mrb_gfx_width(mrb_state *mrb, mrb_value self){
+  return mrb_fixnum_value(display.width());
+}
+
+mrb_value mrb_gfx_getCursorX(mrb_state *mrb, mrb_value self){
+  return mrb_fixnum_value(display.getCursorX());
+}
+
+mrb_value mrb_gfx_getCursorY(mrb_state *mrb, mrb_value self){
+  return mrb_fixnum_value(display.getCursorY());
+}
+
 extern "C"
 void mrb_mruby_arduino_ssd1306_gem_init(mrb_state *mrb)
 {
@@ -183,6 +199,10 @@ void mrb_mruby_arduino_ssd1306_gem_init(mrb_state *mrb)
 	mrb_define_module_function(mrb, ssd1306, "use_tomthumb_font", mrb_gfx_useTomThumbFont, MRB_ARGS_NONE());
 	mrb_define_module_function(mrb, ssd1306, "draw_rect", mrb_gfx_drawRect, MRB_ARGS_REQ(4));
 	mrb_define_module_function(mrb, ssd1306, "fill_rect", mrb_gfx_fillRect, MRB_ARGS_REQ(4));
+	mrb_define_module_function(mrb, ssd1306, "height", mrb_gfx_height, MRB_ARGS_NONE());
+	mrb_define_module_function(mrb, ssd1306, "width", mrb_gfx_width, MRB_ARGS_NONE());
+	mrb_define_module_function(mrb, ssd1306, "get_cursor_x", mrb_gfx_getCursorX, MRB_ARGS_NONE());
+	mrb_define_module_function(mrb, ssd1306, "get_cursor_y", mrb_gfx_getCursorY, MRB_ARGS_NONE());
 
   DONE;
 }
