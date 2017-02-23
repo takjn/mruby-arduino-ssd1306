@@ -12,6 +12,7 @@
 
 #include "Wire.h"
 #include "Adafruit_GFX.h"
+#include "Fonts/TomThumb.h"
 #include "Fonts/acknow7pt.h"
 #include "Fonts/pixel_dingbats.h"
 #include "Adafruit_SSD1306.h"
@@ -31,7 +32,6 @@ mrb_value mrb_gfx_begin(mrb_state *mrb, mrb_value self)
 	pinMode(SCL, OUTPUT);
 	display.begin(SSD1306_SWITCHCAPVCC, i2c_addr);
 	display.setTextColor(WHITE);
-	display.setFont(&acknowtt7pt7b);
 
 	return mrb_nil_value();
 }
@@ -121,13 +121,25 @@ mrb_value mrb_gfx_setTextWrap(mrb_state *mrb, mrb_value self)
 
 mrb_value mrb_gfx_resetFont(mrb_state *mrb, mrb_value self)
 {
-	display.setFont(&acknowtt7pt7b);
+	display.setFont(NULL);
 	return mrb_nil_value();
 }
 
 mrb_value mrb_gfx_useDingbatsFont(mrb_state *mrb, mrb_value self)
 {
 	display.setFont(&pixel_dingbats_78pt8b);
+	return mrb_nil_value();
+}
+
+mrb_value mrb_gfx_useAcknow7ptFont(mrb_state *mrb, mrb_value self)
+{
+	display.setFont(&acknowtt7pt7b);
+	return mrb_nil_value();
+}
+
+mrb_value mrb_gfx_useTomThumbFont(mrb_state *mrb, mrb_value self)
+{
+	display.setFont(&TomThumb);
 	return mrb_nil_value();
 }
 
@@ -167,6 +179,8 @@ void mrb_mruby_arduino_ssd1306_gem_init(mrb_state *mrb)
 	mrb_define_module_function(mrb, ssd1306, "set_text_wrap", mrb_gfx_setTextWrap, MRB_ARGS_REQ(1));
 	mrb_define_module_function(mrb, ssd1306, "reset_font", mrb_gfx_resetFont, MRB_ARGS_NONE());
 	mrb_define_module_function(mrb, ssd1306, "use_dingbats_font", mrb_gfx_useDingbatsFont, MRB_ARGS_NONE());
+	mrb_define_module_function(mrb, ssd1306, "use_acknow7pt_font", mrb_gfx_useAcknow7ptFont, MRB_ARGS_NONE());
+	mrb_define_module_function(mrb, ssd1306, "use_tomthumb_font", mrb_gfx_useTomThumbFont, MRB_ARGS_NONE());
 	mrb_define_module_function(mrb, ssd1306, "draw_rect", mrb_gfx_drawRect, MRB_ARGS_REQ(4));
 	mrb_define_module_function(mrb, ssd1306, "fill_rect", mrb_gfx_fillRect, MRB_ARGS_REQ(4));
 
